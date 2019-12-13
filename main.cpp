@@ -9,7 +9,7 @@ int main()
 {
     try
     {
-        throw Exception("test", __FILE__,__LINE__);  //将析构函数定义成了纯虚函数，是不能定义对象的，为了测试，先将纯虚去掉。
+        THROW_EXCEPTION(Exception,"test");  //为了测试，还需要将纯虚特性去掉
     }
     catch(const Exception& e)
     {
