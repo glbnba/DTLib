@@ -9,8 +9,16 @@ int main()
 {
     try
     {
-        THROW_EXCEPTION(Exception,"test");  //为了测试，还需要将纯虚特性去掉
+        THROW_EXCEPTION(InvalidParameterException,"test");
     }
+
+    catch(const InvalidParameterException& e)
+    {
+        cout << " catch(const NoEnoughMemoryException& e)" << endl;
+        cout << e.message() << endl;
+        cout << e.location() << endl;
+    }
+
     catch(const Exception& e)
     {
         cout << " catch(const Exception& e)" << endl;

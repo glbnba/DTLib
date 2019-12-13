@@ -26,6 +26,95 @@ public:
                               //这个析构函数是不是纯虚函数，一定要提供实现。为什么？在析构一个对象的时候，最后肯定会调用到父类的析构函数，
 };
 
+class ArithmetricException:public Exception
+{
+public:
+    ArithmetricException():Exception(0) {}   //我认为这个实现没有必要
+    ArithmetricException(const char* message):Exception(message) {}
+    ArithmetricException(const char* file, int line):Exception(file, line) {}
+    ArithmetricException(const char* message, const char* file, int line):Exception(message,file,line) {}
+
+    ArithmetricException(const ArithmetricException& e):Exception(e) {}
+    ArithmetricException& operator = (const ArithmetricException& e)
+    {
+        Exception::operator =(e);
+
+        return *this;
+    }
+
+};
+
+class NullPointerException:public Exception
+{
+public:
+    NullPointerException():Exception(0) {}   //我认为这个实现没有必要
+    NullPointerException(const char* message):Exception(message) {}
+    NullPointerException(const char* file, int line):Exception(file, line) {}
+    NullPointerException(const char* message, const char* file, int line):Exception(message,file,line) {}
+
+    NullPointerException(const NullPointerException& e):Exception(e) {}
+    NullPointerException& operator = (const NullPointerException& e)
+    {
+        Exception::operator =(e);
+
+        return *this;
+    }
+
+};
+
+class IndexOutOfBoundsException:public Exception
+{
+public:
+    IndexOutOfBoundsException():Exception(0) {}   //我认为这个实现没有必要
+    IndexOutOfBoundsException(const char* message):Exception(message) {}
+    IndexOutOfBoundsException(const char* file, int line):Exception(file, line) {}
+    IndexOutOfBoundsException(const char* message, const char* file, int line):Exception(message,file,line) {}
+
+    IndexOutOfBoundsException(const IndexOutOfBoundsException& e):Exception(e) {}
+    IndexOutOfBoundsException& operator = (const IndexOutOfBoundsException& e)
+    {
+        Exception::operator =(e);
+
+        return *this;
+    }
+
+};
+
+class NoEnoughMemoryException:public Exception
+{
+public:
+    NoEnoughMemoryException():Exception(0) {}   //我认为这个实现没有必要
+    NoEnoughMemoryException(const char* message):Exception(message) {}
+    NoEnoughMemoryException(const char* file, int line):Exception(file, line) {}
+    NoEnoughMemoryException(const char* message, const char* file, int line):Exception(message,file,line) {}
+
+    NoEnoughMemoryException(const NoEnoughMemoryException& e):Exception(e) {}
+    NoEnoughMemoryException& operator = (const NoEnoughMemoryException& e)
+    {
+        Exception::operator =(e);
+
+        return *this;
+    }
+
+};
+
+class InvalidParameterException:public Exception
+{
+public:
+    InvalidParameterException():Exception(0) {}   //我认为这个实现没有必要
+    InvalidParameterException(const char* message):Exception(message) {}
+    InvalidParameterException(const char* file, int line):Exception(file, line) {}
+    InvalidParameterException(const char* message, const char* file, int line):Exception(message,file,line) {}
+
+    InvalidParameterException(const InvalidParameterException& e):Exception(e) {}
+    InvalidParameterException& operator = (const InvalidParameterException& e)
+    {
+        Exception::operator =(e);
+
+        return *this;
+    }
+
+};
 }
 
 #endif // EXCEPTION_H
