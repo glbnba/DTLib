@@ -1,32 +1,24 @@
 #include <iostream>
-#include "Object.h"
+#include "Staticlist.h"
 
 using namespace std;
 using namespace DTLib;
 
-class Test : public Object
-{
-public:
-    int i;
-    int j;
-};
 
-class Child : public Test
-{
-public:
-    int k;
-};
 
 int main()
 {
-    Object* obj1 = new Test(); //在堆空间创建Test对象
-    Object* obj2 = new Child(); //在堆空间创建child对象
+    StaticList<int, 5> sl;
 
-    cout << "obj1 = " << obj1 << endl;
-    cout << "obj2 = " << obj2 << endl;
+    for(int i=0; i<sl.capacity(); i++)
+    {
+        sl.insert(0,i);  //每次都在线性表的头部进行插入
+    }
 
-    delete obj1;
-    delete obj2;
+    for(int i=0; i<sl.length(); i++)
+    {
+        cout << sl[i] << endl;
+    }
 
     return 0;
 }

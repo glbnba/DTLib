@@ -107,7 +107,7 @@ public:
 #endif
         //考虑代码的复用性，那么就可以直接使用上面的非const版本的重载函数。
         //此时如果调用到了T operator[] (int i) const，说明当前对象是一个const对象，可以考虑将当前对象的const属性去掉，就可以使用T& operator[](int i)的实现了
-        return const_cast<SeqList<T&>>(*this)[i];
+        return const_cast<SeqList<T&> >(*this)[i];
     }
     //顺序存储空间的容量
     virtual int capacity() const = 0; //代表顺序存储空间的最大容量，然而顺序存储空间的具体指定并不是在SeqList这个类中完成的。在其子类中实现
