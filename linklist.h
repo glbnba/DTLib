@@ -17,8 +17,25 @@ protected:
         Node* next;
     };
 
-    mutable Node m_header;//加上mutable就允许在const成员函数中取m_header的地址了
+   // mutable Node m_header;//加上mutable就允许在const成员函数中取m_header的地址了
+    /*这个类型的定义仅仅是为了头结点，非常巧妙。*/
+    mutable struct : public Object
+    {
+        char reserved[sizeof(T)];
+        Node* next;
+    }m_header;
     int m_length;
+
+    Node* position(int i) const
+    {
+        Node* ret = reinterpret_cast<Node*>(&m_header);
+        for(int p=0; p<i; p++)
+        {
+            ret = ret->next;
+        }
+
+        return ret;
+    }
 public:
     LinkList()
     {
@@ -38,11 +55,7 @@ public:
 
             if(node != NULL)
             {
-                Node* current = &m_header;
-                for(int p=0; p<i; p++)
-                {
-                    current = current->next;
-                }
+                Node* current = position(i);
                 node->value = e;
                 node->next = current->next;
                 current->next = node;
@@ -62,19 +75,13 @@ public:
 
         if(ret)
         {
-            Node* current = &m_header;
+           Node* current = position(i);
 
-                for(int p=0; p<i; p++)
-                {
-                    current = current->next;
-                }
+            Node* toDel = current->next;
+            toDel->next = current->next;
+            delete toDel;
 
-                Node* toDel = current->next;
-                toDel->next = current->next;
-                delete toDel;
-
-                m_length--;
-
+            m_length--;
         }
 
         return ret;
@@ -85,12 +92,7 @@ public:
 
         if(ret)
         {
-            Node* current = &m_header;
-
-            for(int p=0; p<i; p++)
-            {
-                current=current->next;
-            }
+            Node* current= position(i);
 
             current->next->value = e;
         }
@@ -120,12 +122,7 @@ public:
 
         if(ret)
         {
-            Node* current = &m_header;
-
-            for(int p=0; p<i; p++)
-            {
-                current=current->next;
-            }
+            Node* current = position(i);
 
             e = current->next->value;
         }
