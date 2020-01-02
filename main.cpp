@@ -1,41 +1,42 @@
 #include <iostream>
-#include "DynamicArray.h"
+#include <String>
+#include "LinkList.h"
 
 using namespace std;
 using namespace DTLib;
 
 
+class Test : public Object
+{
+int i;
+public:
+    Test(int v=0)
+    {
+        i = v;
+    }
+
+    bool operator ==(const Test& e)
+    {
+        return (i == e.i);
+    }
+
+};
 
 int main()
 {
+    Test t1(1);
+    Test t2(2);
+    Test t3(3);
 
-    DynamicArray<int> sl(5);
+    LinkList<Test> list;
 
-    for(int i=0; i<sl.length(); i++)
-    {
-        sl[i] = i * i;
-    }
+    list.insert(t1);
+    list.insert(t2);
+    list.insert(t3);
 
-    for(int i=0; i<sl.length(); i++)
-    {
-        cout << sl[i] << endl;
-    }
+    cout << list.find(t2) <<endl;
 
-    cout << endl;
-    DynamicArray <int> s2(5);
-    s2 = sl;
-    for(int i=0; i<s2.length(); i++)
-    {
-        cout << s2[i] << endl;
-    }
 
-    cout << endl;
-
-    s2.resize(10);
-    for(int i=0; i<10; i++)
-    {
-        cout << s2[i] << endl;
-    }
     return 0;
 
 }

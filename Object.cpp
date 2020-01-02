@@ -18,6 +18,16 @@ void* Object::operator new[] (unsigned int size) throw()
 {
     return malloc(size);
 }
+
+bool Object::operator ==(const Object& obj)
+{
+    return (this == &obj);  //比较地址是最好的选择
+}
+
+bool Object::operator !=(const Object& obj)
+{
+    return (this != &obj);
+}
 void Object::operator delete[](void* p)
 {
     free(p);
