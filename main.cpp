@@ -6,35 +6,35 @@ using namespace std;
 using namespace DTLib;
 
 
-class Test : public Object
-{
-int i;
-public:
-    Test(int v=0)
-    {
-        i = v;
-    }
 
-    bool operator ==(const Test& e)
-    {
-        return (i == e.i);
-    }
-
-};
 
 int main()
 {
-    Test t1(1);
-    Test t2(2);
-    Test t3(3);
+    LinkList<int> list;
 
-    LinkList<Test> list;
+    for(int i=0; i<5; i++)
+    {
+        list.insert(0,i);
+    }
 
-    list.insert(t1);
-    list.insert(t2);
-    list.insert(t3);
+    /*将游标移动到第0个节点所在的位置list.move(0)
+    list.end()判断当前游标是否已达到末尾；
+    list.next()移动游标
+    意义就是先将指针指向第0个数据元素，打印第0个数据元素的值；
+    然后移动一次，移动一次后再来获取数据元素的值...时间复杂度就是O(n)
+    */
+    for(list.move(0); !list.end(); list.next())
+    {
+        cout << list.current() << endl;
+    }
 
-    cout << list.find(t2) <<endl;
+    //可以只遍历下标为偶数的数据元素
+    for(list.move(0,2); !list.end(); list.next())
+    {
+        cout << list.current() << endl;
+    }
+
+
 
 
     return 0;
